@@ -1,0 +1,9 @@
+24
+7
+XXX              X      
+X X   X    XXX       X  
+X X        X XXXX       
+XXX        X XX X      X
+     X     XXXX X       
+              XXX       
+                        
