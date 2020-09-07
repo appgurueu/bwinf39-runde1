@@ -18,14 +18,19 @@ Aufbau des Repositories
 -----------------------
 
 Im Hauptverzeichnis des Repositories finden sich das Aufgabenblatt:
+
   * Das Aufgabenblatt: `Bundeswettbewerb39-Aufgabenblatt.pdf`.
   * Der Mantelbogen mit allgemeinen Informationen über den Wettbewerb:
     `Bundeswettbewerb39-Mantel.pdf`.
 
-In den Unterordnern zu den einzelnen Aufgaben befinden sich ggf. je
-ein Verzeichnis `beispieldaten` mit den vom BwInf zu dieser Aufgabe zur
-Verfügung gestellten Beispieldaten. Bei Aufgabe 3 (Tobis Turnier) gibt
-es zusätzlich noch ein Dokument, das die Beschreibung der
-Turniervarianten und Informationen zu Zufallszahlengeneratoren:
+In den Unterordnern zu den einzelnen Aufgaben befinden sich je
+
+  * noch einmal die zur Aufgabe gehörende Aufgabenstellung und
+  * ggf. ein Verzeichnis `beispieldaten` mit den vom BwInf zu dieser
+    Aufgabe zur Verfügung gestellten Beispieldaten.
+
+Bei Aufgabe 3 (Tobis Turnier) gibt es zusätzlich noch ein Dokument, das
+die Beschreibung der Turniervarianten und Informationen zu
+Zufallszahlengeneratoren:
 `Beschreibung_Tuniervarianten-Zufallszahlen.pdf`
 
