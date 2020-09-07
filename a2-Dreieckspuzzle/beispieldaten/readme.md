@@ -1,7 +1,7 @@
-Für jedes Puzzle enthält die entsprechende Datei
+Jede Datei beschreibt ein Puzzle und enthält
 
- * in der ersten Zeile die Anzahl m der Bilder (Figuren), die in dem Puzzle vorkommen,
- * in der zweiten Zeile die Anzahl n der dreieckigen Spielsteine des Puzzles und
- * in den weiteren n Zeilen jeweils drei Zahlen im Bereich -m  bis -1 und 1 bis m, wobei
-   * eine positive Zahl z die Oberseite der Figur z beschreibt und
-   * eine negative Zahl -z die Unterseite der Figur z beschreibt.
+  * in der ersten Zeile die Anzahl m der Figuren, die in dem Puzzle vorkommen (und von 1 bis m nummeriert sind),
+  * in der zweiten Zeile die Anzahl n der dreieckigen Teile des Puzzles und
+  * in den weiteren n Zeilen jeweils drei Zahlen, wobei
+    * eine positive Zahl z für die Oberseite der Figur z steht und
+    * eine negative Zahl -z für die Unterseite der Figur z steht.
