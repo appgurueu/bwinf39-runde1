@@ -21,7 +21,7 @@ type Wort struct {
 // WortMitLuecken - Anfang und Ende im Lückentext, gegebene Buchstaben, und infragekommende Wörter
 type WortMitLuecken struct {
 	start              uint
-	length             uint
+	laenge             uint
 	gegebeneBuchstaben map[uint]rune
 	passendeWoerter    map[uint]bool
 }
@@ -37,9 +37,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	lines := strings.Split(string(text), "\n")
-	aufgabe := Text(lines[0])
-	_woerter := strings.Split(lines[1], " ")
+	zeilen := strings.Split(string(text), "\n")
+	aufgabe := Text(zeilen[0])
+	_woerter := strings.Split(zeilen[1], " ")
 	// Verarbeiten
 	woerterNachLaenge := map[uint]map[uint]*Wort{}
 	bekannteWoerter := map[string]uint{}
@@ -71,12 +71,12 @@ func main() {
 	var setzeWortEin func(wortMitLuecken *WortMitLuecken, id uint)
 	setzeWortEin = func(wortMitLuecken *WortMitLuecken, id uint) {
 		// Ersetzt mit dem richtigen Wort die entsprechende Stelle im Text
-		copy(aufgabe[wortMitLuecken.start:wortMitLuecken.start+wortMitLuecken.length], Text(_woerter[id]))
+		copy(aufgabe[wortMitLuecken.start:wortMitLuecken.start+wortMitLuecken.laenge], Text(_woerter[id]))
 		// Anzahl verringern
-		woerterNachLaenge[wortMitLuecken.length][id].anzahl--
-		if woerterNachLaenge[wortMitLuecken.length][id].anzahl == 0 {
+		woerterNachLaenge[wortMitLuecken.laenge][id].anzahl--
+		if woerterNachLaenge[wortMitLuecken.laenge][id].anzahl == 0 {
 			// Anzahl 0, Wort steht nicht mehr zur Verfügung
-			delete(woerterNachLaenge[wortMitLuecken.length], id)
+			delete(woerterNachLaenge[wortMitLuecken.laenge], id)
 			delete(lueckenNachWort[id], wortMitLuecken)
 			// Überall, wo das Wort infragekommt...
 			for lueckenwort := range lueckenNachWort[id] {
@@ -98,7 +98,7 @@ func main() {
 		var id uint
 		// Sucht ein passendes Wort
 	wortSuche:
-		for _id, wort := range woerterNachLaenge[wortMitLuecken.length] {
+		for _id, wort := range woerterNachLaenge[wortMitLuecken.laenge] {
 			for index, gegebenerBuchstabe := range wortMitLuecken.gegebeneBuchstaben {
 				if wort.text[index] != gegebenerBuchstabe {
 					// Buchstabe an einer Stelle passt nicht: Wort kommt nicht infrage
@@ -116,27 +116,28 @@ func main() {
 			setzeWortEin(wortMitLuecken, id)
 		}
 	}
-	for pos, char := range aufgabe {
-		istBuchstabe := unicode.IsLetter(char)
-		istGesucht := char == '_'
+	for stelle, zeichen := range aufgabe {
+		istBuchstabe := unicode.IsLetter(zeichen)
+		istGesucht := zeichen == '_'
 		if istBuchstabe || istGesucht {
 			// Teil eines Wortes mit Lücken
 			if wortMitLuecken == nil {
 				// Initialisierung falls erster Buchstabe / erste Lücke des Wortes
-				wortMitLuecken = &WortMitLuecken{uint(pos), 0, map[uint]rune{}, map[uint]bool{}}
+				wortMitLuecken = &WortMitLuecken{uint(stelle), 0, map[uint]rune{}, map[uint]bool{}}
 			}
 			if istBuchstabe {
 				// Gegebenen Buchstaben eintragen
-				wortMitLuecken.gegebeneBuchstaben[uint(pos)-wortMitLuecken.start] = char
+				wortMitLuecken.gegebeneBuchstaben[uint(stelle)-wortMitLuecken.start] = zeichen
 			}
 		} else if wortMitLuecken != nil {
-			wortMitLuecken.length = uint(pos) - wortMitLuecken.start
+			wortMitLuecken.laenge = uint(stelle) - wortMitLuecken.start
 			findePassendeWoerter()
 			wortMitLuecken = nil
 		}
 	}
 	if wortMitLuecken != nil {
-		wortMitLuecken.length = uint(len(aufgabe)) - wortMitLuecken.start
+		// Falls der Text mit einem Wort endet
+		wortMitLuecken.laenge = uint(len(aufgabe)) - wortMitLuecken.start
 		findePassendeWoerter()
 	}
 	// lueckenNachWort nach Wörtern durchgehen, für die nur eine einzige Lücke infrage kommt, ist nicht nötig
