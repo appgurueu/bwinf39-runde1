@@ -1,0 +1,4 @@
+Liga: 99.786 %
+K.O.: 87.4557 %
+K.O.x5: 99.7381 %
+Zeit verstrichen: 12.901049 s

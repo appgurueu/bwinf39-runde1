@@ -1,0 +1,2 @@
+Puzzle unlösbar
+Zeit verstrichen: 0.19849 ms

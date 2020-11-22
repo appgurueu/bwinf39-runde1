@@ -1,0 +1,2 @@
+Lösung: Informatik ist die Wissenschaft von der systematischen Darstellung, Speicherung, Verarbeitung und Übertragung von Informationen, besonders der automatischen Verarbeitung mit Digitalrechnern.
+Zeit verstrichen: 0.222585 ms

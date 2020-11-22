@@ -1,0 +1,2 @@
+Lösung: public static void main
+Zeit verstrichen: 0.148274 ms

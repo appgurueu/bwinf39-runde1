@@ -1,0 +1,6 @@
+Lösung:
+6, 2, 1, 3, 5, 4, 7, 10, 9, 8
+
+Erfüllte Wünsche: 6, 0, 2
+
+Zeit verstrichen: 0.00040208 s
