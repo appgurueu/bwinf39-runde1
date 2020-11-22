@@ -9,9 +9,11 @@ echo "$aufgabe"
 cd "$aufgabe"
 echo "Build..."
 go build main.go
-echo "Run..."
 cd beispieldaten
+if [ "$1" == "run" ]; then
+echo "Run..."
 for i in *.txt; do (../main "$i") > "../loesungen/${i}"; done
+fi
 cd ..
 echo "Docs..."
 pandoc Dokumentation.md -f markdown -t latex --pdf-engine=xelatex -s -o Dokumentation.pdf --include-in-header=../.docs/header.tex --lua-filter=../.docs/files.lua -V fontsize=12pt -M lang:de
