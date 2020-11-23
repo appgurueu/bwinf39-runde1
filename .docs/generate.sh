@@ -22,6 +22,6 @@ cd ..
 done
 echo "Zip..."
 rm -f "../bwinf39-runde1.zip"
-zip -r "../bwinf39-runde1.zip" > /dev/null
+zip -r "../bwinf39-runde1.zip" .
 git commit -m "Generierte Dokumentation"
 echo "Done"
