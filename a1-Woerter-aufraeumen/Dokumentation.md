@@ -1,8 +1,12 @@
-# Lösung Aufgabe 1 "Wörter aufräumen"
+# Lösung Aufgabe 1 „Wörter aufräumen“
 
 ## Lösungsidee
 
-Zunächst muss man überlegen, wann ein Wort "passt". Dies kann nur gegeben sein, wenn an den richtigen Stellen die richtigen Buchstaben stehen, und das Wort die passende Länge besitzt. Dadurch erhalten wir pro Lücke mehrere passende Wörter. Kommt für eine Lücke nur ein Wort infrage, muss dieses eingesetzt werden. Das Wort kann dann gestrichen werden: Es ist kann nicht mehr als passendes Wort infrage kommen. Dadurch wiederholt sich dann für weitere Wörter diese Situation, so lange, bis alle Wörter eingesetzt sind.
+Zunächst muss man überlegen, wann ein Wort "passt": Dies ist der Fall, wenn die richtigen Buchstaben an den richtigen Stellen stehen, und das Wort die passende Länge besitzt.
+
+Nach dieser Definition erhalten wir pro Lücke mehrere passende Wörter. Kommt für eine Lücke nur ein Wort infrage, ist klar, wie weiter zu verfahren ist: Das Wort muss eingesetzt werden.
+
+Daraufhin kann es dann gestrichen werden: Wurde es schon so oft wie möglich (Wörter können mehrmals vorkommen) eingesetzt, kann es nicht mehr als passendes Wort für andere Lücken infrage kommen - muss also von der Menge passender Wörter anderer Lücken gestrichen werden. Für Lücken, die vorher zwei passende Wörter besaßen, von denen nun eins gestrichen wurde, ergibt sich daher wieder ein eindeutig einzusetzendes Wort... Dies geschieht so lange, bis schließlich alle Wörter eingesetzt sind.
 
 ### Korrektheit
 

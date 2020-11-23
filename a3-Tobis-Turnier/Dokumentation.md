@@ -1,22 +1,22 @@
-# Lösung Aufgabe 3 "Tobis Turnier"
+# Lösung Aufgabe 3 „Tobis Turnier“
 
 ## Lösungsidee
 
-Die drei Turniervarianten werden nach gegebener Spezifikation implementiert und zahlreiche Durchläufe simuliert.
+Die drei Turniervarianten werden nach gegebener Spezifikation implementiert und zahlreiche (eine Million) Durchläufe simuliert.
 
-Entsprechend ist die eigentliche Arbeit hauptsächlich **Umsetzung** der Spezifikation.
+Entsprechend ist die eigentliche Arbeit hauptsächlich **Umsetzung** der Spezifikation aus der Aufgabe und der Beschreibung der Turniervarianten.
 
 ### Genauigkeit
 
-Abhängig von der gleichmäßigen Streuung der Zufallszahlen des verwendeten Zufallsgenerators und der Anzahl der simulierten Durchläufe.
+Abhängig von der gleichmäßigen Streuung der Zufallszahlen des verwendeten Zufallsgenerators und der Anzahl der simulierten Durchläufe. Zahlreiche Testläufe zeigen: Die Abweichungen sind äußerst gering, die in einer Million Durchläufe berechneten Mittelwerte sind relativ zuverlässig.
 
 ### Komplexität
 
 Sei $n$ die Anzahl der Spieler. Dann benötigen die Turniervarianten jeweils folgend viele Spiele:
 
 * Liga: $\sum_{i=1}^{n-1} i = \frac{n(n-1)}{2}$
-* K.O.: $\sum_{i=1}^{log_2(n)} \frac{n}{2^i} = n$
-* K.O.x5: 5-mal so viele Spiele wie K.O.: $5 \cdot n$
+* K.O.: $\sum_{i=1}^{log_2(n)} \frac{n}{2^i} = n - 1$
+* K.O.x5: 5-mal so viele Spiele wie K.O.: $5 \cdot (n - 1)$
 
 Offensichtlich ist Liga am aufwendigsten mit quadratisch vielen Spielen ($S(n) = O(n^2)$). K.O. und K.O.x5 dahingegen benötigen nur linear viele ($S(n) = O(n)$).
 
@@ -37,9 +37,9 @@ Beispiel: `./main beispieldaten/spielstaerken1.txt`
 ### Ausgabe
 
 ```
-Liga: <Siege Bester Spieler bei 1.000.000 Liga-Turnieren in Prozent> %
-K.O.: <Siege Bester Spieler bei 1.000.000 K.O.-Turnieren in Prozent> %
-K.O.x5: <Siege Bester Spieler bei 1.000.000 K.O.x5-Turnieren in Prozent> %
+Liga: <Siege Bester Spieler bei 10^6 Liga-Turnieren in Prozent> %
+K.O.: <Siege Bester Spieler bei 10^6 K.O.-Turnieren in Prozent> %
+K.O.x5: <Siege Bester Spieler bei 10^6 K.O.x5-Turnieren in Prozent> %
 Zeit verstrichen: <Verstrichene Zeit in Sekunden> s
 
 ```
@@ -171,7 +171,7 @@ loesungen/spielstaerken5.txt
 
 ### Fazit
 
-* K.O.x5 weist immer bessere Siegesquoten des besten Spielers auf als einfaches K.O., da die Wahrscheinlichkeit, dass der schlechtere Spieler in einem Aufeinandertreffen gewinnt, weiter gesenkt wird, indem dieser den Großteil Spiele gewinnen müsste. Insgesamt ist K.O.x5 genauer als K.O.
+* K.O.x5 weist immer bessere Siegesquoten des besten Spielers auf als einfaches K.O., da die Wahrscheinlichkeit, dass der schlechtere Spieler in einem Aufeinandertreffen gewinnt, weiter gesenkt wird, indem dieser den Großteil Spiele gewinnen müsste. Insgesamt ist K.O.x5 deutlich genauer als K.O.
 * Durchschnittlich erweist sich K.O.x5 auch im Vergleich zur Liga als zuverlässiger (35 % vs. 64 %, 21 % vs. 37 %, 31.5 % vs. 31 %, 11.5 % vs. 8 %, 99.8 % vs. 99.7 %).
 * Im Falle vieler ähnlich starker Kontrahenten (`spielstaerken4.txt`) hat der beste Spieler es schwieriger, sich im K.O.x5 zu behaupten, da der Verlust eines einzigen Aufeinandertreffens reicht, damit er verliert. Hier ist Liga etwas zuverlässiger (11.5 % vs. 8 %).
 * Insgesamt empfehle ich Tobi entsprechend **K.O.x5**

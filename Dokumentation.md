@@ -35,6 +35,8 @@ Die Aufgabenstellungen wurden in den Ordnern beibehalten.
 
 In Go werden Arrays, deren Länge nicht zur Compile-time feststeht, als "Slices" ("Stücke") bezeichnet.
 
+Als Notation für eine Abbildung über Arrays, Slices oder Maps wird "\[Schlüssel] = Wert" verwendet.
+
 #### Editor
 
-* Visual Studio Code mit installiertem Go-Plugin (meine Empfehlung).
+* Visual Studio Code mit installiertem Go-Plugin geeignet

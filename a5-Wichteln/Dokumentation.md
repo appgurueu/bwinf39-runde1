@@ -1,14 +1,14 @@
-# Lösung Aufgabe 5 "Wichteln"
+# Lösung Aufgabe 5 „Wichteln“
 
 ## Lösungsidee
 
-Wir verwenden einen optimierenden Algorithmus. Die Schüler werden in einer Reihenfolge durchgegangen. In dieser werden zuerst erste Wünsche erfüllt, dann Zweite, und schließlich Dritte.
+Wir verwenden einen **optimierenden Algorithmus**. Die Schüler werden in einer Reihenfolge durchgegangen. In dieser werden zuerst erste Wünsche erfüllt, dann Zweite, und schließlich Dritte.
 
-Diese Reihenfolge verbessern wir solange möglich, indem wir immer zwei Schüler vertauschen, die neue Reihenfolge ausprobieren, und beibehalten falls diese besser ist.
+Diese Reihenfolge verbessern wir solange möglich, indem wir immer zwei Schüler vertauschen, die neue Reihenfolge ausprobieren, und beibehalten falls sie sich als besser erweist (führt zur Erfüllung von mehr wertvolleren Wünschen).
 
 ### Korrektheit
 
-Wenn eine Reihenfolge nicht mehr verbesserbar ist, muss sie die eine optimale Reihenfolge sein.
+Wenn eine Reihenfolge nicht mehr verbesserbar ist, muss sie eine optimale Reihenfolge sein.
 
 Es bleibt zu zeigen, dass jede optimale Geschenkeverteilung auch als Reihenfolge darstellbar ist.
 
@@ -24,6 +24,8 @@ erfüllt.
 Damit nun einem Schüler sein erster Wunsch erfüllt wird, brauchen wir ihn nur an eine Stelle zu stellen, wo das Geschenk noch nicht vergeben sein wird.
 
 Analog können wir auch zweite und dritte Wunsch erfüllen, indem wir den betreffenden Schüler an einer Stelle in der Reihenfolge einsetzen, wo sein erster Wunsch bzw. sein erster und sein zweiter Wunsch schon vergeben sein werden (da Schüler, die weiter vorne in der Reihenfolge stehen, diese erhalten).
+
+Mathematisch resümiert: **Die Abbildung von Geschenkeverteilung nach Reihenfolge ist eine Biijektion**, daher funktioniert der verwendete optimierende Algorithmus.
 
 ### Komplexität
 
@@ -83,12 +85,12 @@ Schließlich erhält man eine Slice mit \[Schülernummer-1] = 3-er-Array{Geschen
 
 ### Verarbeitung
 
-Eine Funktion probiert die aktuelle Reihenfolge aus, indem zuerst erste, dann zweite, und schließlich dritte Wünsche in der Reihenfolge erfüllt werden. Hierfür werden vergebene und erhaltene Geschenke mit einer [`Verteilung`] nachgehalten. Der Wert wird als Zahl (`uint64`) zur Basis $n + 1$ mit $n$ = Anzahl Schüler dargestellt. Hierbei stehen erste Wünsche an erster Stelle, 2. an 2. und 3. an 3.: $wert = (n+1)^2 \cdot erfuellteErsteWuensche + (n+1) \cdot erfuellteZweiteWuensche + erfuellteDritteWuensche$. Der Vergleich zweier Verteilungen wird somit zu einem einfachen Zahlenvergleich.
+Eine Funktion probiert die aktuelle Reihenfolge aus, indem zuerst erste, dann zweite, und schließlich dritte Wünsche in der Reihenfolge mit zwei geschachtelten Schleifen erfüllt werden. Hierfür werden vergebene und erhaltene Geschenke mit einer [`Verteilung`] nachgehalten. Der Wert wird als Zahl (`uint64`) zur Basis $n + 1$ mit $n$ = Anzahl Schüler dargestellt. Hierbei stehen erste Wünsche an erster Stelle, 2. an 2. und 3. an 3.: $wert = (n+1)^2 \cdot erfuellteErsteWuensche + (n+1) \cdot erfuellteZweiteWuensche + erfuellteDritteWuensche$. *Der Vergleich zweier Verteilungen wird somit zu einem einfachen Zahlenvergleich.*
 
 Wir beginnen mit der Einlesereihenfolge der Schüler als Startreihenfolge.
 
-Dann probieren wir solange Swaps (Täusche) aus, bis keiner der möglichen Swaps mehr zu einer Verbesserung des Wertes der aktuellen Reihenfolge führt.
-Einen Swap machen wir rückgängig, wenn sich herausstellt, dass dieser zu keiner Verbesserung geführt hat. Insgesamt ergeben sich 3 geschachtelte Schleifen.
+Dann probieren wir solange Swaps (Täusche) über drei geschachtelte Schleifen (1. Fortwährendes Swappen, 2. Zu swappenden Schüler, 3. Anderer zu swappender Schüler) aus, bis keiner der möglichen Swaps mehr zu einer Verbesserung des Wertes der aktuellen Reihenfolge führt.
+Einen Swap machen wir rückgängig, wenn sich herausstellt, dass dieser zu keiner Verbesserung geführt hat.
 
 ### Ausgabe
 
@@ -96,7 +98,7 @@ Zunächst wird die Verteilung komplettiert: Schüler, die keinen Wunsch erfüllt
 
 Schließlich geben wir "einfach" die erhaltenen Geschenke aus. Diese trennen wir in einer Zeile mit Leerzeichen und Komma, sonst durch Zeilenumbrüche. Hierbei sorgen wir für Zeilen, die nicht länger als 80 Zeichen werden.
 
-Die Anzahl der erfüllten Wünsche extrahieren wir aus dem Wert der Verteilung mittels Division mit Rest und geben diese zusammen mit der verstrichenen Zeit ebenfalls aus.
+Die Anzahl der erfüllten Wünsche extrahieren wir aus dem Wert der Verteilung jeweils mittels Division mit Rest und geben diese zusammen mit der verstrichenen Zeit ebenfalls aus.
 
 ## Quellcode
 
