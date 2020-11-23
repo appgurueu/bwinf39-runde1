@@ -23,6 +23,8 @@ Die Struktur jedes Ordners ist wie folgt:
 
 Die Aufgabenstellungen wurden in den Ordnern beibehalten.
 
+Die versteckten Ordner `.docs` und `.git` sind irrelevant.
+
 ### Umgebung
 
 #### Betriebssystem
