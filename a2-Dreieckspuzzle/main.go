@@ -258,7 +258,6 @@ func main() {
 			// Unter 4 Teilen muss eines dabei sein, dass keine Ecke, sondern ein Kernteil ist
 			// Starte Brute-Force mit Kernteil
 			probiereKerne(-teile[teil][seite], &Kernteil{(seite + 2) % 3, teil, nil}, VerwendeteTeile(0).Verwende(teil), 1)
-			// TODO break
 		}
 	}
 	// Kein Abbruch ist erfolgt: Das Puzzle konnte nicht gelöst werden
