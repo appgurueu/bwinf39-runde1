@@ -20,5 +20,5 @@ pandoc Dokumentation.md -f markdown -t latex --pdf-engine=xelatex -s -o Dokument
 cd ..
 done
 echo "Zip..."
-zip -r "../bwinf39-runde1.zip" "$(pwd)" > /dev/null
+zip -r "../bwinf39-runde1.zip" "../bwinf39-runde1" > /dev/null
 echo "Done"
