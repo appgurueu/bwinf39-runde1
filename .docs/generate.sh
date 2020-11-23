@@ -17,8 +17,10 @@ fi
 cd ..
 echo "Docs..."
 pandoc Dokumentation.md -f markdown -t latex --pdf-engine=xelatex -s -o Dokumentation.pdf --include-in-header=../.docs/header.tex --lua-filter=../.docs/files.lua -V fontsize=12pt -M lang:de
+git add Dokumentation.pdf
 cd ..
 done
 echo "Zip..."
 zip -r "../bwinf39-runde1.zip" "../bwinf39-runde1" > /dev/null
+git commit -m "Generierte Dokumentation"
 echo "Done"
